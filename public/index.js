@@ -197,5 +197,43 @@ function getFinalPrice() {
     }
 }
 
+//EXERCICE 2
+
+function getFinalPrice2() {
+  var timeDiff;
+  var diffDays;
+  var distance=[];
+  for(var i = 0; i < rentals.length; i++) {
+	//Retrieves distances
+	distance[i]=rentals[i].distance;
+	//compute the number of days
+  	timeDiff = Math.abs(convertDate(rentals[i].returnDate).getTime() - convertDate(rentals[i].pickupDate).getTime());
+    diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+	//compute the price in fuction of the distance
+	if(rentals[i].distance >=10)
+	{
+    rentals[i].price = diffDays * (cars[i].pricePerDay*0.5) + rentals[i].distance * cars[i].pricePerKm;
+	console.log(rentals[i].price);
+	}
+	else if (rentals[i].distance>=4)
+	{
+		rentals[i].price = diffDays * (cars[i].pricePerDay*0.3) + rentals[i].distance * cars[i].pricePerKm;
+	console.log(rentals[i].price);
+	}
+	else if (rentals[i].distance>=1)
+	{
+		rentals[i].price = diffDays * (cars[i].pricePerDay*0.1) + rentals[i].distance * cars[i].pricePerKm;
+	console.log(rentals[i].price);
+	}
+	else 
+	{
+		rentals[i].price = diffDays * cars[i].pricePerDay* + rentals[i].distance * cars[i].pricePerKm;
+	console.log(rentals[i].price);
+	}
+    }
+}
+
+
+
 
 
