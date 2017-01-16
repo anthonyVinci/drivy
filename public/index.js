@@ -233,6 +233,30 @@ function getFinalPrice2() {
     }
 }
 
+//EXERCICE 3
+
+function commission()
+{
+	var com;
+	var timeDiff;
+	var diffDays;
+	for(var i=0;rentals.length;i++)
+	{
+		com = rentals[i].price*0.3;
+		rentals[i].insurance=com/2; //insurance
+		
+		//assistance
+		timeDiff = Math.abs(convertDate(rentals[i].returnDate).getTime() - convertDate(rentals[i].pickupDate).getTime());
+		diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		rentals[i].assistance=diffDays*1;
+		
+		//drivy
+		rentals[i].drivy= com - rentals[i].insurance ;
+		
+	
+	}
+}
+
 
 
 
