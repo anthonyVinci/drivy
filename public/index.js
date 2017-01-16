@@ -169,3 +169,33 @@ console.log(cars);
 console.log(rentals);
 console.log(actors);
 console.log(rentalModifications);
+
+
+
+//fonction to convert the date
+function convertDate(str)
+{
+	var re=/[0-9]+/g;
+	var result = re[Symbol.match](str);
+	var dateLoc=new Date(result[0],result[1],result[2]);
+	return dateLoc;
+}
+//computing of the final price
+function getFinalPrice() {
+  var timeDiff;
+  var diffDays;
+  var distance=[];
+  for(var i = 0; i < rentals.length; i++) {
+	//keep in data the distance
+	distance[i]=rentals[i].distance;
+	//compute the number of days
+  	timeDiff = Math.abs(convertDate(rentals[i].returnDate).getTime() - convertDate(rentals[i].pickupDate).getTime());
+    diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+	//compute the price
+    rentals[i].price = diffDays * cars[i].pricePerDay + rentals[i].distance * cars[i].pricePerKm;
+	console.log(rentals[i].price);
+    }
+}
+
+
+
