@@ -246,6 +246,54 @@ rentalPriceDecreasing(){
 			}
 		}
 	}	
+//EXERCICE 3
+
+function commission()
+{
+	var com;
+	var timeDiff;
+	var diffDays;
+	for(var i=0;rentals.length;i++)
+	{
+		com = rentals[i].price*0.3;
+		rentals[i].insurance=com/2; //insurance
+		
+		//assistance
+		timeDiff = Math.abs(convertDate(rentals[i].returnDate).getTime() - convertDate(rentals[i].pickupDate).getTime());
+		diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		rentals[i].assistance=diffDays*1;
+		
+		//drivy
+		rentals[i].drivy= com - rentals[i].insurance ;
+		
+	
+	}
+}
+
+// EXERCICE 4
+
+
+function OptionRental(i)
+{
+	var OptionPrice = 0;
+	var numberDays = getDays(rentals[i].pickupDate,rentals[i].returnDate);
+	OptionPrice = priceDecreasePerRental(i) + 4 *numberDays;
+	return OptionPrice;
+}
+
+
+function WithOption(rentals)
+{
+	
+	for(var i = 0; i<rentals.length;i++) 
+	{
+		rentals[i].price = priceDecreasePerRental(i); 
+		if(rentals[i].options.deductibleReduction)
+		{
+			rentals[i].price = OptionRental(i); 
+		}
+	}
+	return rentals;
 }
 
 
