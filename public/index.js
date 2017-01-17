@@ -245,7 +245,9 @@ rentalPriceDecreasing(){
 
 			}
 		}
-	}	
+	}
+}
+
 //EXERCICE 3
 
 function commission()
@@ -294,6 +296,28 @@ function WithOption(rentals)
 		}
 	}
 	return rentals;
+}
+
+//Exercice 5 
+function ActorRentals()
+{
+
+	for(var i = 0; i<actors.length;i++)
+	{
+		for(var j = 0; j<rentals.length;j++)
+		{
+			if(actors[i].rentalId == rentals[j].id)
+			{
+					actors[i].payment[0].amount = priceWithOptionsPerRental(j);  //driver's amount
+					actors[i].payment[1].amount = priceWithOptionsPerRental(j) - commission(rentals) ;//owner's amount
+					actors[i].payment[2].amount = commissionAssistance(j); //assistance's amount
+					actors[i].payment[3].amount = commissionInsurance(j); //insurance's amount
+				    actors[i].payment[4].amount = commissionDrivy(j) - priceDecreasePerRental(j); + OptionRental(j)  // ForDrivy
+			}
+		}
+	}
+
+ 
 }
 
 
